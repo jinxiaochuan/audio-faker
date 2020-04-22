@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format-prettier": "prettier --write '**/*.{css,gql,graphql,html,js,jsx,json,less,scss,ts,tsx,vue}'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +40,8 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.0"
+    "@types/styled-components": "^5.1.0",
+    "@umijs/fabric": "^2.0.8",
+    "prettier": "^2.0.5"
   }
 }

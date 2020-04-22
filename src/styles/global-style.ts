@@ -3,4 +3,4 @@ import { normalize } from 'polished';
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize()};
-`
+`;

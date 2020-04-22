@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { styledComponentTheme } from 'config/theme';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App: FC = () => {
+  const [number, setNumber] = useState(0);
+
   return (
     <ThemeProvider theme={styledComponentTheme}>
       <div className="App">
@@ -21,10 +23,12 @@ function App() {
           >
             Learn React
           </a>
+          <p className="App-intro">The current value of number is {number}</p>
+          <button onClick={() => setNumber(number + 1)}>+</button>
         </header>
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

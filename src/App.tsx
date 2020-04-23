@@ -1,32 +1,33 @@
 import React, { FC, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from 'styles/global-style';
 import { styledComponentTheme } from 'config/theme';
 import logo from './logo.svg';
-import './App.css';
+import * as SC from './styled-app';
 
 const App: FC = () => {
   const [number, setNumber] = useState(0);
 
   return (
     <ThemeProvider theme={styledComponentTheme}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
+      <SC.App>
+        <SC.AppHeader>
+          <SC.AppLogo src={logo} alt="logo" />
+          <SC.AppDesc>
             Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
+          </SC.AppDesc>
+          <SC.AppLink
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
-          <p className="App-intro">The current value of number is {number}</p>
-          <button onClick={() => setNumber(number + 1)}>+</button>
-        </header>
-      </div>
+          </SC.AppLink>
+          <SC.AppIntro>The current value of number is {number}</SC.AppIntro>
+          <SC.AppButton onClick={() => setNumber(number + 1)}>+</SC.AppButton>
+        </SC.AppHeader>
+      </SC.App>
+      <GlobalStyle />
     </ThemeProvider>
   );
 };

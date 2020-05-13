@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'styles/global-style';
 import { styledComponentTheme } from 'config/theme';
 import logo from './logo.svg';
+import NativeAudio from 'lib';
 import * as SC from './styled-app';
 
 const App: FC = () => {
@@ -12,6 +13,10 @@ const App: FC = () => {
     <ThemeProvider theme={styledComponentTheme}>
       <SC.App>
         <SC.AppHeader>
+          <NativeAudio
+            controls
+            src="https://stla-crm.indata.cc/ftp/CsPhoneCommunicate/2020/5/13/qCRsEr0000000012.mp3"
+          />
           <SC.AppLogo src={logo} alt="logo" />
           <SC.AppDesc>
             Edit <code>src/App.tsx</code> and save to reload.

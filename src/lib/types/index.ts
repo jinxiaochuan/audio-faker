@@ -1,3 +1,5 @@
+import AudioStore from 'lib/store/audio';
+
 // 媒体事件类型
 export enum EventName {
   /** 当浏览器开始查找媒体时  */
@@ -129,3 +131,7 @@ export type Action =
   | EventFormat<EventName.VOLUME_CHANGE, IMediaProperties>
   | EventFormat<EventName.RATE_CHANGE, IMediaProperties>
   | EventFormat<EventName.ERROR, IMediaProperties>;
+
+export interface IStore {
+  store: AudioStore;
+}

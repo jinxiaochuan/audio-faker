@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'styles/global-style';
 import { styledComponentTheme } from 'config/theme';
+import Player from 'lib';
 import logo from './logo.svg';
-import NativeAudio from 'lib';
 import * as SC from './styled-app';
 
 const App: FC = () => {
@@ -13,9 +13,13 @@ const App: FC = () => {
     <ThemeProvider theme={styledComponentTheme}>
       <SC.App>
         <SC.AppHeader>
-          <NativeAudio
+          <Player
             controls
             src="https://stla-crm.indata.cc/ftp/CsPhoneCommunicate/2020/5/13/qCRsEr0000000012.mp3"
+          />
+          <Player
+            controls
+            src="https://stla-crm.indata.cc/ftp/CsPhoneCommunicate/2020/5/6/rtWcso0000000006.wav.wav.mp3"
           />
           <SC.AppLogo src={logo} alt="logo" />
           <SC.AppDesc>

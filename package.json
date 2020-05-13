@@ -34,6 +34,18 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -47,14 +59,18 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/config-angular": "^8.3.4",
     "@types/styled-components": "^5.1.0",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@umijs/fabric": "^2.0.8",
+    "commitlint": "^8.3.5",
     "customize-cra": "^0.9.1",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "^4.7.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",
     "react-app-rewired": "^2.1.5"
   }

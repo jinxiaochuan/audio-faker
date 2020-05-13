@@ -16,11 +16,7 @@ const App: FC = () => {
           <SC.AppDesc>
             Edit <code>src/App.tsx</code> and save to reload.
           </SC.AppDesc>
-          <SC.AppLink
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <SC.AppLink href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
             Learn React
           </SC.AppLink>
           <SC.AppIntro>The current value of number is {number}</SC.AppIntro>

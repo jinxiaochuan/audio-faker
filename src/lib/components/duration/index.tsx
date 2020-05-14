@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react-lite';
-import { IStore } from 'lib/types';
-import { useStores } from 'lib/store';
+import { IStore } from '../../types';
+import { useStores } from '../../store';
 
 const Duration: FC<IStore> = ({ store }) => {
   const { mediaProperties } = useStores(store);

@@ -1,4 +1,4 @@
-import AudioStore from 'lib/store/audio';
+import AudioStore from '../store/audio';
 
 // 媒体事件类型
 export enum EventName {

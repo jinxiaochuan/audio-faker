@@ -1,7 +1,7 @@
 import React, { FC, AudioHTMLAttributes, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
-import AudioStore from 'lib/store/audio';
-import { useStores } from 'lib/store';
+import AudioStore from '../../store/audio';
+import { useStores } from '../../store';
 
 export interface IAudioProps extends AudioHTMLAttributes<HTMLAudioElement> {
   store: AudioStore;

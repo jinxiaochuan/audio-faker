@@ -1,7 +1,7 @@
 import { RefObject, SyntheticEvent, ReactEventHandler } from 'react';
 import { observable, action } from 'mobx';
-import { IMediaProperties } from 'lib/types';
-import { MEDIA_PROPERTIES_KEYS } from 'lib/constants';
+import { IMediaProperties } from '../../types';
+import { MEDIA_PROPERTIES_KEYS } from '../../constants';
 
 const DEFAULT_MEDIA_PROPERTIES: IMediaProperties = {
   src: '',

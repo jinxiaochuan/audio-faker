@@ -1,4 +1,4 @@
-import { IMediaProperties } from 'lib/types';
+import { IMediaProperties } from '../types';
 
 export const MEDIA_OWN_PROPERTIES_KEYS = [
   'src',

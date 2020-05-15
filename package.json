@@ -21,10 +21,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "tsc-build": "rm -fr ./build && tsc",
+    "build": "rm -fr ./build && tsc",
     "lint": "npm run typecheck && npm run lint-eslint",
     "lint-eslint": "eslint src --quiet --cache --ext .tsx,.ts,.js",
     "format": "npm run format-prettier && npm run format-eslint",
@@ -38,8 +35,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run lint",
       "npm run format",
+      "npm run lint",
       "git add"
     ]
   },

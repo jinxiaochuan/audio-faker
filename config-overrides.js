@@ -1,8 +1,5 @@
 const path = require('path');
-const {
-  override,
-  addBabelPlugin
-} = require('customize-cra');
+const { override, addBabelPlugin } = require('customize-cra');
 
 // 覆写「入口|出口」配置
 const overrideEntryAndOutputConfig = () => (config) => {
@@ -26,11 +23,11 @@ const removePlugins = (plugins) => (config) => {
   if (config.mode === 'production') {
     config.plugins = config.plugins.filter((p) => {
       const pluginName = p.constructor.name;
-      return Array.isArray(plugins) ?
-        !plugins.includes(pluginName) :
-        typeof pluginName === 'string' ?
-        pluginName !== plugins :
-        true;
+      return Array.isArray(plugins)
+        ? !plugins.includes(pluginName)
+        : typeof pluginName === 'string'
+        ? pluginName !== plugins
+        : true;
     });
   }
   return config;
@@ -39,20 +36,22 @@ const removePlugins = (plugins) => (config) => {
 const addBabelLoaderRule = () => (config) => {
   config.module.rules.unshift({
     test: /\.(ts|tsx)$/,
-    use: [{
-      loader: require.resolve('babel-loader'),
-      options: {
-        presets: [
-          [
-            'react-app',
-            {
-              flow: false,
-              typescript: true,
-            },
+    use: [
+      {
+        loader: require.resolve('babel-loader'),
+        options: {
+          presets: [
+            [
+              'react-app',
+              {
+                flow: false,
+                typescript: true,
+              },
+            ],
           ],
-        ],
+        },
       },
-    }, ],
+    ],
   });
   return config;
 };

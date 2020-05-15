@@ -1,7 +1,12 @@
 import React, { FC, useState, AudioHTMLAttributes } from 'react';
 import NativeAudio from './components/native-audio';
+import PlayPause from './components/play-pause';
 import Duration from './components/duration';
+import Progress from './components/progress';
+import Mute from './components/mute';
+import Download from './components/download';
 import AudioStore from './store/audio';
+import * as SC from './styled';
 
 interface IPlayerProps extends AudioHTMLAttributes<HTMLAudioElement> {}
 
@@ -12,7 +17,13 @@ const Player: FC<IPlayerProps> = (props) => {
   return (
     <>
       <NativeAudio store={audioStore} {...props} />
-      <Duration store={audioStore} />
+      <SC.Player>
+        <PlayPause store={audioStore} />
+        <Duration store={audioStore} />
+        <Progress store={audioStore} />
+        <Mute store={audioStore} />
+        <Download store={audioStore} />
+      </SC.Player>
     </>
   );
 };

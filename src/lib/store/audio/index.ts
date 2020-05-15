@@ -26,6 +26,9 @@ const DEFAULT_MEDIA_PROPERTIES: IMediaProperties = {
 
 class AudioStore {
   @observable
+  audioRef: RefObject<HTMLAudioElement> | null = null;
+
+  @observable
   mediaProperties: IMediaProperties = DEFAULT_MEDIA_PROPERTIES;
 
   /** 拖动媒体播放进度条时「快进或快退」拖动至的时间位置 */
@@ -44,42 +47,83 @@ class AudioStore {
   @observable
   playsinline: boolean = false;
 
+  @action
+  setAudioRef = (audioRef: RefObject<HTMLAudioElement>) => {
+    this.audioRef = audioRef;
+  };
+
+  @action
+  setSeekingTime = (seekingTime: number, seekingEnd: boolean = false) => {
+    this.seekingTime = seekingTime;
+    if (seekingEnd) {
+      if (this.audioRef && this.audioRef.current) {
+        this.audioRef.current.currentTime = seekingTime;
+        this.updateMediaProperties();
+      }
+    }
+  };
+
+  @action
+  setUserActivity = (userActivity: boolean) => {
+    this.userActivity = userActivity;
+  };
+
   /** 客户端开始请求数据 */
   @action
   handleLoadStart = (
-    audioRef: RefObject<HTMLAudioElement>,
     e: SyntheticEvent<HTMLAudioElement, Event>,
     nativeCallback?: ReactEventHandler<HTMLAudioElement>,
   ) => {
-    this.updateMediaProperties(audioRef);
+    this.updateMediaProperties();
     nativeCallback && nativeCallback(e);
   };
 
   /** 原生媒体事件监听触发 */
   @action
   handleNativeEvent = (
-    audioRef: RefObject<HTMLAudioElement>,
     e: SyntheticEvent<HTMLAudioElement, Event>,
     nativeCallback?: ReactEventHandler<HTMLAudioElement>,
   ) => {
-    this.updateMediaProperties(audioRef);
+    this.updateMediaProperties();
     nativeCallback && nativeCallback(e);
   };
 
   /** 更新媒体属性 */
   @action
-  updateMediaProperties = (audioRef: RefObject<HTMLAudioElement>) => {
-    this.mediaProperties = this.getMediaProperties(audioRef);
+  updateMediaProperties = () => {
+    this.mediaProperties = this.getMediaProperties();
+  };
+
+  /** 静音 */
+  @action
+  updateMediaMuted = (muted: boolean) => {
+    if (this.audioRef && this.audioRef.current) {
+      this.audioRef.current.muted = muted;
+      this.updateMediaProperties();
+    }
+  };
+
+  /** 播放|暂停 */
+  @action
+  updateMediaPaused = (paused: boolean) => {
+    if (this.audioRef && this.audioRef.current) {
+      if (paused) {
+        this.audioRef.current.pause();
+      } else {
+        this.audioRef.current.play();
+      }
+      this.updateMediaProperties();
+    }
   };
 
   /** 获取媒体的所有属性 */
-  getMediaProperties = (audioRef: RefObject<HTMLAudioElement>) => {
-    if (audioRef.current) {
+  getMediaProperties = () => {
+    if (this.audioRef && this.audioRef.current) {
       return MEDIA_PROPERTIES_KEYS.reduce(
         (properties: IMediaProperties, key: keyof IMediaProperties) => {
           return {
             ...properties,
-            [key]: (audioRef.current || DEFAULT_MEDIA_PROPERTIES)[key],
+            [key]: (this.audioRef.current || DEFAULT_MEDIA_PROPERTIES)[key],
           };
         },
         {} as IMediaProperties,

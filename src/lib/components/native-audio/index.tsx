@@ -1,4 +1,4 @@
-import React, { FC, AudioHTMLAttributes, useRef } from 'react';
+import React, { FC, AudioHTMLAttributes, useRef, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import AudioStore from '../../store/audio';
 import { useStores } from '../../store';
@@ -11,6 +11,9 @@ const NativeAudio: FC<IAudioProps> = (props) => {
   const { store, ...audioProps } = props;
   const { handleNativeEvent } = useStores(store);
   const audioRef = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    store.setAudioRef(audioRef);
+  }, [store]);
 
   const {
     onLoadStart,
@@ -41,28 +44,28 @@ const NativeAudio: FC<IAudioProps> = (props) => {
   return (
     <audio
       ref={audioRef}
-      onLoadStart={(e) => handleNativeEvent(audioRef, e, onLoadStart)}
-      onLoadedMetadata={(e) => handleNativeEvent(audioRef, e, onLoadedMetadata)}
-      onLoadedData={(e) => handleNativeEvent(audioRef, e, onLoadedData)}
-      onCanPlay={(e) => handleNativeEvent(audioRef, e, onCanPlay)}
-      onCanPlayThrough={(e) => handleNativeEvent(audioRef, e, onCanPlayThrough)}
-      onWaiting={(e) => handleNativeEvent(audioRef, e, onWaiting)}
-      onPlaying={(e) => handleNativeEvent(audioRef, e, onPlaying)}
-      onEnded={(e) => handleNativeEvent(audioRef, e, onEnded)}
-      onSeeking={(e) => handleNativeEvent(audioRef, e, onSeeking)}
-      onSeeked={(e) => handleNativeEvent(audioRef, e, onSeeked)}
-      onPlay={(e) => handleNativeEvent(audioRef, e, onPlay)}
-      onPause={(e) => handleNativeEvent(audioRef, e, onPause)}
-      onProgress={(e) => handleNativeEvent(audioRef, e, onProgress)}
-      onDurationChange={(e) => handleNativeEvent(audioRef, e, onDurationChange)}
-      onSuspend={(e) => handleNativeEvent(audioRef, e, onSuspend)}
-      onAbort={(e) => handleNativeEvent(audioRef, e, onAbort)}
-      onEmptied={(e) => handleNativeEvent(audioRef, e, onEmptied)}
-      onStalled={(e) => handleNativeEvent(audioRef, e, onStalled)}
-      onTimeUpdate={(e) => handleNativeEvent(audioRef, e, onTimeUpdate)}
-      onVolumeChange={(e) => handleNativeEvent(audioRef, e, onVolumeChange)}
-      onRateChange={(e) => handleNativeEvent(audioRef, e, onRateChange)}
-      onError={(e) => handleNativeEvent(audioRef, e, onError)}
+      onLoadStart={(e) => handleNativeEvent(e, onLoadStart)}
+      onLoadedMetadata={(e) => handleNativeEvent(e, onLoadedMetadata)}
+      onLoadedData={(e) => handleNativeEvent(e, onLoadedData)}
+      onCanPlay={(e) => handleNativeEvent(e, onCanPlay)}
+      onCanPlayThrough={(e) => handleNativeEvent(e, onCanPlayThrough)}
+      onWaiting={(e) => handleNativeEvent(e, onWaiting)}
+      onPlaying={(e) => handleNativeEvent(e, onPlaying)}
+      onEnded={(e) => handleNativeEvent(e, onEnded)}
+      onSeeking={(e) => handleNativeEvent(e, onSeeking)}
+      onSeeked={(e) => handleNativeEvent(e, onSeeked)}
+      onPlay={(e) => handleNativeEvent(e, onPlay)}
+      onPause={(e) => handleNativeEvent(e, onPause)}
+      onProgress={(e) => handleNativeEvent(e, onProgress)}
+      onDurationChange={(e) => handleNativeEvent(e, onDurationChange)}
+      onSuspend={(e) => handleNativeEvent(e, onSuspend)}
+      onAbort={(e) => handleNativeEvent(e, onAbort)}
+      onEmptied={(e) => handleNativeEvent(e, onEmptied)}
+      onStalled={(e) => handleNativeEvent(e, onStalled)}
+      onTimeUpdate={(e) => handleNativeEvent(e, onTimeUpdate)}
+      onVolumeChange={(e) => handleNativeEvent(e, onVolumeChange)}
+      onRateChange={(e) => handleNativeEvent(e, onRateChange)}
+      onError={(e) => handleNativeEvent(e, onError)}
       {...res}
     />
   );

@@ -2,13 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "target": "es5",
-    "lib": [
-      "es5",
-      "es6",
-      "es7",
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -24,15 +18,8 @@
     "declaration": true,
     "baseUrl": "src",
     "outDir": "build",
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "typeRoots": ["node_modules/@types"]
   },
-  "include": [
-    "src/lib/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/lib/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

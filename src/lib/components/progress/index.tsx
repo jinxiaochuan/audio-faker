@@ -36,27 +36,25 @@ const Progress: FC<IStore> = ({ store }) => {
       if (Number.isNaN(duration) || duration === Infinity || duration === 0) {
         return 0;
       }
-      const newTime = (value / 100) * duration;
-      /** 防止直接拖动进度条到结束时视频直接停止，使得时间减少0.01s */
-      return newTime === duration ? newTime - 0.01 : newTime;
+      return (value / 100) * duration;
     },
     [mediaProperties],
   );
 
   const handleChange = useCallback(
     (value: number) => {
-      setTime(value);
       setUserActivity(true);
       setSeekingTime(getSeekingTime(value));
+      setTime(value);
     },
     [getSeekingTime, setSeekingTime, setUserActivity],
   );
 
   const handleAfterChange = useCallback(
     (value: number) => {
-      setTime(value);
       setUserActivity(false);
       setSeekingTime(getSeekingTime(value), true);
+      setTime(value);
     },
     [getSeekingTime, setSeekingTime, setUserActivity],
   );
@@ -64,8 +62,6 @@ const Progress: FC<IStore> = ({ store }) => {
   useEffect(() => {
     setTime(getTime());
   }, [getTime]);
-
-  console.log(time);
 
   return (
     <SC.ProgressWrap>

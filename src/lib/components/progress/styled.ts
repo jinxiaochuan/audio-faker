@@ -5,6 +5,7 @@ export const ProgressWrap = styled.div`
   position: relative;
 
   .rc-slider {
+    cursor: pointer;
     .rc-slider-rail {
       background-color: #c1c2c3;
     }

@@ -8,7 +8,7 @@ export const LoadProgressBar = styled.div`
   height: 4px;
   border-radius: 4px;
   box-sizing: border-box;
-  z-index: 1;
+  z-index: -1;
 `;
 
 export const LoadProgressBuffered = styled.div`

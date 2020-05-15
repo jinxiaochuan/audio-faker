@@ -7,12 +7,15 @@ import * as SC from './styled';
 
 const Duration: FC<IStore> = ({ store }) => {
   const {
+    seekingTime,
+    userActivity,
     mediaProperties: { currentTime, duration },
   } = useStores(store);
+  const current = userActivity ? seekingTime : currentTime;
 
   return (
     <SC.TimeWrap>
-      {formatTime(currentTime, duration)}
+      {formatTime(current, duration)}
       <SC.TimeSplit>/</SC.TimeSplit>
       {formatTime(duration, duration)}
     </SC.TimeWrap>

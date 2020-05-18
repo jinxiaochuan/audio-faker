@@ -56,10 +56,7 @@ class AudioStore {
   setSeekingTime = (seekingTime: number, seekingEnd: boolean = false) => {
     this.seekingTime = seekingTime;
     if (seekingEnd) {
-      if (this.audioRef && this.audioRef.current) {
-        this.audioRef.current.currentTime = seekingTime;
-        this.updateMediaProperties();
-      }
+      this.setCurrentTime(seekingTime);
     }
   };
 
@@ -68,14 +65,40 @@ class AudioStore {
     this.userActivity = userActivity;
   };
 
-  /** 客户端开始请求数据 */
+  /** 设置是否静音 */
   @action
-  handleLoadStart = (
-    e: SyntheticEvent<HTMLAudioElement, Event>,
-    nativeCallback?: ReactEventHandler<HTMLAudioElement>,
-  ) => {
-    this.updateMediaProperties();
-    nativeCallback && nativeCallback(e);
+  setMuted = (muted: boolean) => {
+    if (this.audioRef && this.audioRef.current) {
+      this.audioRef.current.muted = muted;
+      this.updateMediaProperties();
+    }
+  };
+
+  /** 设置播放时间 */
+  @action
+  setCurrentTime = (currentTime: number) => {
+    if (this.audioRef && this.audioRef.current) {
+      this.audioRef.current.currentTime = currentTime;
+      this.updateMediaProperties();
+    }
+  };
+
+  /** 播放 */
+  @action
+  play = () => {
+    if (this.audioRef && this.audioRef.current) {
+      this.audioRef.current.play();
+      this.updateMediaProperties();
+    }
+  };
+
+  /** 暂停 */
+  @action
+  pause = () => {
+    if (this.audioRef && this.audioRef.current) {
+      this.audioRef.current.pause();
+      this.updateMediaProperties();
+    }
   };
 
   /** 原生媒体事件监听触发 */
@@ -92,28 +115,6 @@ class AudioStore {
   @action
   updateMediaProperties = () => {
     this.mediaProperties = this.getMediaProperties();
-  };
-
-  /** 静音 */
-  @action
-  updateMediaMuted = (muted: boolean) => {
-    if (this.audioRef && this.audioRef.current) {
-      this.audioRef.current.muted = muted;
-      this.updateMediaProperties();
-    }
-  };
-
-  /** 播放|暂停 */
-  @action
-  updateMediaPaused = (paused: boolean) => {
-    if (this.audioRef && this.audioRef.current) {
-      if (paused) {
-        this.audioRef.current.pause();
-      } else {
-        this.audioRef.current.play();
-      }
-      this.updateMediaProperties();
-    }
   };
 
   /** 获取媒体的所有属性 */

@@ -1,8 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/global-style';
 import { styledComponentTheme } from './config/theme';
 import Player from './lib';
+import AudioStore from './lib/store/audio';
 import * as SC from './styled-app';
 
 const App: FC = () => {
@@ -10,6 +11,7 @@ const App: FC = () => {
   const [src, setSrc] = useState(
     'https://byrobot-sq.oss-cn-hangzhou.aliyuncs.com/1/2020-04-30_1489/20200426170138.mp3',
   );
+  const storeRef = useRef<AudioStore>();
   setTimeout(() => {
     setSrc('https://byrobot-sq.oss-cn-hangzhou.aliyuncs.com/1/2020-04-30_1489/20200426165810.mp3');
   }, 5000);
@@ -18,7 +20,7 @@ const App: FC = () => {
     <ThemeProvider theme={styledComponentTheme}>
       <SC.App>
         <SC.AppHeader>
-          <Player controls src={src} />
+          <Player storeRef={storeRef} controls src={src} />
           <Player
             controls
             src="https://stla-crm.indata.cc/ftp/CsPhoneCommunicate/2020/5/6/rtWcso0000000006.wav.wav.mp3"

@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import SoundOn from '@indata/icon/lib/application/SoundOn';
-import SoundOff from '@indata/icon/lib/application/SoundOff';
+import SoundOnLine from '@indata/icon/lib/application/SoundOnLine';
+import SoundClose from '@indata/icon/lib/application/SoundClose';
 import { observer } from 'mobx-react-lite';
 import { IStore } from '../../types';
 import { useStores } from '../../store';
@@ -16,7 +16,7 @@ const Mute: FC<IStore> = ({ store }) => {
     setMuted(!muted);
   }, [muted, setMuted]);
 
-  return <SC.Mute onClick={handMuted}>{!muted ? <SoundOn /> : <SoundOff />}</SC.Mute>;
+  return <SC.Mute onClick={handMuted}>{!muted ? <SoundOnLine /> : <SoundClose />}</SC.Mute>;
 };
 
 export default observer(Mute);

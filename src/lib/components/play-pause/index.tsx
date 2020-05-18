@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import Play from '@indata/icon/lib/application/Play';
-import ExitPlay from '@indata/icon/lib/application/ExitPlay';
+import SolidPlay from '@indata/icon/lib/application/SolidPlay';
+import ExitPlayLine from '@indata/icon/lib/application/ExitPlayLine';
 import { observer } from 'mobx-react-lite';
 import { IStore } from '../../types';
 import { useStores } from '../../store';
@@ -14,10 +14,14 @@ const PlayPause: FC<IStore> = ({ store }) => {
   } = useStores(store);
 
   const handlePlay = useCallback(() => {
-    paused ? play() : pause();
+    if (paused) {
+      play();
+    } else {
+      pause();
+    }
   }, [pause, paused, play]);
 
-  return <SC.Play onClick={handlePlay}>{paused ? <Play /> : <ExitPlay />}</SC.Play>;
+  return <SC.Play onClick={handlePlay}>{paused ? <SolidPlay /> : <ExitPlayLine />}</SC.Play>;
 };
 
 export default observer(PlayPause);

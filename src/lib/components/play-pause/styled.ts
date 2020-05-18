@@ -19,7 +19,6 @@ export const Play = styled.div`
   }
 
   svg {
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.65);
+    font-size: 16px;
   }
 `;

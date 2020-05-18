@@ -1272,10 +1272,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@indata/icon@^0.0.160":
-  version "0.0.160"
-  resolved "http://registry.indata.cc/@indata/icon/download/@indata/icon-0.0.160.tgz#285898a8cad42536affc366f093ff298cd7f81bc"
-  integrity sha1-KFiYqMrUJTav/DZvCT/ymM1/gbw=
+"@indata/icon@^0.0.161":
+  version "0.0.161"
+  resolved "http://registry.indata.cc/@indata/icon/download/@indata/icon-0.0.161.tgz#1a944a93165c7b9d8a312c9171340a5e28c84437"
+  integrity sha1-GpRKkxZce52KMSyRcTQKXijIRDc=
   dependencies:
     "@svgr/cli" "^5.3.1"
     react-scripts "3.1.2"

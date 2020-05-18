@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from 'react';
+import React, { FC, useState, useCallback, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/global-style';
 import { styledComponentTheme } from './config/theme';
@@ -12,6 +12,19 @@ const App: FC = () => {
     'https://byrobot-sq.oss-cn-hangzhou.aliyuncs.com/1/2020-04-30_1489/20200426170138.mp3',
   );
   const storeRef = useRef<AudioStore>();
+
+  const handlePlay = useCallback(() => {
+    if (storeRef.current) {
+      storeRef.current.play();
+    }
+  }, []);
+
+  const handlePause = useCallback(() => {
+    if (storeRef.current) {
+      storeRef.current.pause();
+    }
+  }, []);
+
   setTimeout(() => {
     setSrc('https://byrobot-sq.oss-cn-hangzhou.aliyuncs.com/1/2020-04-30_1489/20200426165810.mp3');
   }, 5000);
@@ -20,11 +33,11 @@ const App: FC = () => {
     <ThemeProvider theme={styledComponentTheme}>
       <SC.App>
         <SC.AppHeader>
-          <Player storeRef={storeRef} controls src={src} />
-          <Player
-            controls
-            src="https://stla-crm.indata.cc/ftp/CsPhoneCommunicate/2020/5/6/rtWcso0000000006.wav.wav.mp3"
-          />
+          <Player storeRef={storeRef} src={src} />
+          <button onClick={handlePlay}>播放</button>
+          <button onClick={handlePause}>暂停</button>
+
+          <Player src="https://stla-crm.indata.cc/ftp/CsPhoneCommunicate/2020/5/6/rtWcso0000000006.wav.wav.mp3" />
           <SC.AppDesc>
             Edit <code>src/App.tsx</code> and save to reload.
           </SC.AppDesc>

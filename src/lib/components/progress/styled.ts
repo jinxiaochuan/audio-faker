@@ -7,21 +7,21 @@ export const ProgressWrap = styled.div`
   .rc-slider {
     cursor: pointer;
     .rc-slider-rail {
-      background-color: #c1c2c3;
+      background-color: rgba(210, 210, 217, 1);
     }
     .rc-slider-track {
-      background-color: #191919;
+      background-color: rgba(0, 0, 0, 0.9);
       z-index: 2;
     }
     .rc-slider-handle {
-      background-color: #1f1f20;
-      border: 2px solid #1f1f20;
+      background-color: rgba(0, 0, 0, 0.9);
+      border: 2px solid rgba(0, 0, 0, 0.9);
       z-index: 5;
       cursor: pointer;
     }
     &:hover {
       .rc-slider-handle {
-        border: 2px solid #1f1f20;
+        border: 2px solid rgba(0, 0, 0, 0.9);
       }
     }
   }

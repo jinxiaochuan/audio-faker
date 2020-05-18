@@ -17,6 +17,7 @@ export const ProgressWrap = styled.div`
       width: 12px;
       height: 12px;
       margin-top: -4px;
+      margin-left: 0;
       background-color: rgba(0, 0, 0, 0.85);
       border: 2px solid rgba(0, 0, 0, 0.85);
       z-index: 5;
